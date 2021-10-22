@@ -36,6 +36,7 @@ vroom("valori_variazioni_no2_2019_2020.csv",delim=";",col_names=TRUE,show_col_ty
 shinyServer(function(input, output,session) {
     
     
+    
     #All'apertura dell'app, quando l'utente non ha ancora selezionato nessuna stazione, viene scelta una stazione a caso
     sample_n(stazioni,size=1)->randomStation
     
@@ -47,24 +48,18 @@ shinyServer(function(input, output,session) {
     })->nomeFile
     
     
-    reactive({
+    myrasters<-reactive({
             
         grep(input$settimana,nomiLayers())->qualeLayer
         req(qualeLayer>0)
-        raster(paste0(nomeFile(),".tif"),band=qualeLayer)
+        
+        raster(paste0(nomeFile(),".tif"),band=qualeLayer)->griglia
+        raster(paste0(nomeFile(),"_masks.tif"),band=qualeLayer)->maschera
+        
+        list(griglia,maschera)
 
             
-    })->griglia
-    
-    
-    reactive({
-        
-        grep(input$settimana,nomiLayers())->qualeLayer
-        req(qualeLayer>0)
-        raster(paste0(nomeFile(),"_masks.tif"),band=qualeLayer)
-        
-        
-    })->maschera
+    })
     
     
     reactive({
@@ -108,13 +103,15 @@ shinyServer(function(input, output,session) {
                 setView(lng=12,lat=42,zoom=6) %>%
                 addTiles() %>%
                 addProviderTiles(provider="Stamen.Toner") %>%
-                addRasterImage(x=griglia(),colors = pal,opacity=0.8) %>%
-                addRasterImage(x=maschera(),opacity=0.4,group = i18n$t("Significant variation area"),colors ="#333333") %>% 
-                addCircleMarkers(opacity=1,lat=~st_y,lng=~st_x,radius=3,fillColor="#FFB859",stroke=FALSE,fillOpacity=0.8,group = i18n$t("Monitoring stations"),layerId=~station_eu_code,label=~nome_stazione) %>%
+                addRasterImage(x=myrasters()[[1]],colors = pal,opacity=0.8) %>%
+                addRasterImage(x=myrasters()[[2]],opacity=0.4,group = i18n$t("Significant variation area"),colors ="#333333") %>% 
+                addCircleMarkers(opacity=1,lat=~st_y,lng=~st_x,radius=4,fillColor="#E26969",stroke=FALSE,fillOpacity=0.8,group = i18n$t("Monitoring stations"),layerId=~station_eu_code,label=~nome_stazione) %>%
                 addLayersControl(overlayGroups =c(i18n$t("Monitoring stations"),i18n$t("Significant variation area")),options = layersControlOptions(collapsed = FALSE)) %>%
                 hideGroup(group=i18n$t("Significant variation area")) %>%
                 addLegend(position="topright",pal=pal,values=seq(-100,100,10),title = i18n$t("% variation")) %>%
-                addEasyButton(button=easyButton(icon=icon("globe"),title="Home",onClick = JS("function(btn,map){map.setView({lat:42,lng:12},6);}")))
+                addEasyButton(button=easyButton(icon=icon("globe"),title="Home",onClick = JS("function(btn,map){map.setView({lat:42,lng:12},6);}"))) %>%
+                activateGPS() %>%
+                addControlGPS(options = gpsOptions(maxZoom=15,setView = TRUE,autoCenter = TRUE))
         
     })->mappaLeaf
     
