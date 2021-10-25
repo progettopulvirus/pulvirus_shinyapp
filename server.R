@@ -7,34 +7,21 @@
 #    http://shiny.rstudio.com/
 #
 
+source("global.R")
+
 library("rgdal")
-library(shiny)
-library("dplyr")
-library("vroom")
 library("raster")
-library("leaflet")
-library("DT")
-library("echarts4r")
-library("htmltools")
 library("scico")
 library("tidyr")
-library("stringr")
 library("shiny.i18n")
 library("leaflet.extras")
-library("htmlwidgets")
 source("getStation.R")
 
-leaflet::colorNumeric(palette=scico::scico(n=10,palette="cork"),domain = seq(-100,100,10),na.color = "transparent")->pal
+    
 
-i18n<-Translator$new(translation_csvs_path = "translations/",separator_csv = ",",automatic =FALSE)
-i18n$set_translation_language("en")
-shiny.i18n::usei18n(i18n)
-
-vroom("valori_variazioni_no2_2019_2020.csv",delim=";",col_names=TRUE,show_col_types = FALSE)->stazioni
 
 # Define server logic required to draw a histogram
 shinyServer(function(input, output,session) {
-    
     
     
     #All'apertura dell'app, quando l'utente non ha ancora selezionato nessuna stazione, viene scelta una stazione a caso
@@ -95,26 +82,6 @@ shinyServer(function(input, output,session) {
     })
     
     
-    reactive({
-        
-        #FF3E59
-
-            leaflet(data=stazioni) %>%
-                setView(lng=12,lat=42,zoom=6) %>%
-                addTiles() %>%
-                addProviderTiles(provider="Stamen.Toner") %>%
-                addRasterImage(x=myrasters()[[1]],colors = pal,opacity=0.8) %>%
-                addRasterImage(x=myrasters()[[2]],opacity=0.4,group = i18n$t("Significant variation area"),colors ="#333333") %>% 
-                addCircleMarkers(opacity=1,lat=~st_y,lng=~st_x,radius=4,fillColor="#E26969",stroke=FALSE,fillOpacity=0.8,group = i18n$t("Monitoring stations"),layerId=~station_eu_code,label=~nome_stazione) %>%
-                addLayersControl(overlayGroups =c(i18n$t("Monitoring stations"),i18n$t("Significant variation area")),options = layersControlOptions(collapsed = FALSE)) %>%
-                hideGroup(group=i18n$t("Significant variation area")) %>%
-                addLegend(position="topright",pal=pal,values=seq(-100,100,10),title = i18n$t("% variation")) %>%
-                addEasyButton(button=easyButton(icon=icon("globe"),title="Home",onClick = JS("function(btn,map){map.setView({lat:42,lng:12},6);}"))) %>%
-                activateGPS() %>%
-                addControlGPS(options = gpsOptions(maxZoom=15,setView = TRUE,autoCenter = TRUE))
-        
-    })->mappaLeaf
-    
     observeEvent(input$mappa_marker_click,{
         
         getStation(.click=input$mappa_marker_click,.x=stazioni,.randomStation = randomStation)->subStazione
@@ -132,7 +99,15 @@ shinyServer(function(input, output,session) {
 
         isolate(getStation(.click=input$mappa_marker_click,.x=stazioni,.randomStation = randomStation)->subStazione)
         
-        mappaLeaf() %>%
+            mappaLeaf %>%
+            addRasterImage(x=myrasters()[[1]],colors = pal,opacity=0.8,project=FALSE) %>%
+            addRasterImage(x=myrasters()[[2]],opacity=0.4,group = i18n$t("Significant variation area"),colors ="#333333",project=FALSE) %>%
+            addLayersControl(overlayGroups =c(i18n$t("Monitoring stations"),i18n$t("Significant variation area")),options = layersControlOptions(collapsed = FALSE)) %>%
+            hideGroup(group=i18n$t("Significant variation area")) %>%
+            addLegend(position="topright",pal=pal,values=seq(-100,100,10),title = i18n$t("% variation")) %>%
+            addEasyButton(button=easyButton(icon=icon("globe"),title="Home",onClick = JS("function(btn,map){map.setView({lat:42,lng:12},6);}"))) %>%
+            activateGPS() %>%
+            addControlGPS(options = gpsOptions(maxZoom=15,setView = TRUE,autoCenter = TRUE)) %>%
             addPopups(data=subStazione,lng=subStazione$st_x,lat=subStazione$st_y,popup = ~nome_stazione,options = markerOptions(clickable = FALSE))
         
     })

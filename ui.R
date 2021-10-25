@@ -7,15 +7,10 @@
 #    http://shiny.rstudio.com/
 #
 
-library("shiny")
+source("global.R")
 library("shinydashboard")
 library("shinydashboardPlus")
-library("leaflet")
-library("DT")
-library("htmltools")
-library("echarts4r")
 library("shinycssloaders")
-library("shiny.i18n")
 library("shinyWidgets")
 
 
