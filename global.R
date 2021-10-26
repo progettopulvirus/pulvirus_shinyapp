@@ -27,8 +27,6 @@ vroom("valori_variazioni_no2_2019_2020.csv",delim=";",col_names=TRUE,show_col_ty
 leaflet(data=stazioni) %>%
   setView(lng=12,lat=42,zoom=6) %>%
   addTiles() %>%
-  addProviderTiles(provider="Stamen.Toner") %>%
-  addCircleMarkers(opacity=1,lat=~st_y,lng=~st_x,radius=4,fillColor="#E26969",stroke=FALSE,fillOpacity=0.8,group = i18n$t("Monitoring stations"),layerId=~station_eu_code,label=~nome_stazione)->mappaLeaf
-
+  addProviderTiles(provider="Stamen.Toner")->mappaLeaf
 
 
