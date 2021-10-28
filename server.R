@@ -226,6 +226,13 @@ shinyServer(function(input, output,session) {
     })
     
     
+    output$readme<-renderText({
+        
+        HTML(ifelse(input$language,readmeEN,readmeIT))
+        
+
+        
+    })
     
     
 

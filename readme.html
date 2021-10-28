@@ -1,9 +1,94 @@
-
+<html>
+<head></head>
+<body>
 <div id="readme" style="background-color: #fff; min-width: 250px; max-width: 60%; margin-left: 5%;margin-top: 48px;line-height: 1.8;color: #333;">
 
-<h3 style="padding-bottom: 2em;text-decoration: none;"> A spatio-temporal analysis of NO 2 concentrations during the Italian 2020 COVID-19 lockdown</h3>
+<h4>The app <i class="fas fa-cogs"></i></h4>
 
-<p>The 2020 lockdown led to a reduction of pollutant emissions and possibly to an improvement of air quality. We describe a spatio-temporal statistical model for the assessment of the 2019/2020 relative change in the NO2 concentrations in Italy. We provide a collection of weekly continuous maps, describing the spatial pattern of the NO2 2019/2020 relative changes. As our maps account for the effect of meteorology, our proposal canbe considered as a solution to the weather normalization problem for the study of the lockdown-air quality relationship. We found that during March and April 2020 most of the area is characterized by negative relative changes (median values around -25%), with the exception of the first week of March and the fourth week of April (median values around 5%). As these changes cannot be attributed to a weather effect, it is likely that they are a byproduct of the lockdown measures.</p>
+<p>
+This <a href="https://shiny.rstudio.com/">shiny app</a> is intended to provide a collection of weekly continuous maps, describing the spatial pattern of the 2019/2020 relative change in nitrogen dioxide (<a href="https://en.wikipedia.org/wiki/Nitrogen_dioxide" title="Nitrogen dioxide" target="_blank">NO2</a>) concentrations in Italy, for the period of March and April during which the <a href="https://en.wikipedia.org/wiki/COVID-19_pandemic" title="COVID-19 pandemic" target="_blank">COVID-19</a> <a href="https://en.wikipedia.org/wiki/Timeline_of_the_COVID-19_pandemic_in_Italy" title="Timeline of the COVID-19 pandemic inItaly" target="_blank">lockdown</a> measure was in force.</p>
 
+<hr>
+
+<h4>The maps <i class="fas fa-map-marked"></i></h4>
+
+<p>The maps are the result of a statistical spatio-temporal model able to take into account the effect of weather and other confounding factors, as well as the spatial and temporal correlation existing in the data.</p>
+
+<p>For more information see [Indirizzo Archive].</p>
+
+<hr>
+
+<h4>The maps and the weather effect <i class="fas fa-smog"></i></h4>
+
+<p>Given that these maps account for <a href="https://theconversation.com/first-lockdowns-effect-on-air-pollution-was-overstated-our-study-reveals-153152" target="_blank" title="Weather effect">the weather effect</a>, the shown reductions across regions and weeks
+must be attributed to a factor different from the meteorology. In addition, as these reductions occur in the same period of the restrictive measures it is likely that the COVID-19 lockdown had an effect in the drop of air pollution levels.</p>
+
+<p>Nevertheless, we can not exclude that other factors, not considered in the model, could have had an active role in the NO2 dynamics.</p>
+</p>
+
+<hr>
+
+<h4>How the app works</h4>
+
+<p>
+<ol>
+  
+<li>Choose the language (English or Italian) for the app interface</li>
+
+<li>Choose between working days (Monday - Saturday) and weekends (Sunday) raster maps</li>
+
+<li>Select one of the weeks in the period March-April in the drop down menu</li>
+
+<li>Areas where a statistical significant variation at the level of 0.05 occurred can be displayed clicking on "<strong>Significant variation areas</strong>"</li>
+
+<li>Click on one of the monitoring stations in the map (red circles) and see its 2019/2020 relative variations in NO2 concentrations in the "<strong>Station Info</strong>" tab</li>
+
+</ol>
+</p>
+
+<hr>
+
+<h4>The data <i class="fas fa-map-pin"></i></h4>
+
+<p>The 2019 and 2020 raw NO2 hourly data (expressed as &mu;g∕𝑚<sup>3</sup>), together with monitoring
+stations metadata, were extracted from the national database used to store and process the Italian Air quality measurements
+(see <a href="https://www.snpambiente.it/wp-content/uploads/2020/12/QUALITA-ARIA-ITALIA.pdf" title="Qualita aria in Italia" target="_blank">SNPA 2020</a>).</p>
+
+<p>The hourly data were measured at stations operated by the local Regional Environmental Protection Agencies, following the European standards EN 14211:2012 for NO, NO2 , and NOX. All ground concentrations were fully validated and daily averages were computed provided that a daily 75% data coverages was achieved (i.e., at least 18 valid hourly records out of 24).</p>
+
+<p>The input dataset for our spatio-temporal analysis includes 546 monitoring sites with a low proportion of missing data (&lt; 25% per station).</p>
+
+<hr>
+
+
+<h4>The code <i class="fas fa-code"></i></h4>
+
+<p>Part of the source code of the spatio-temporal model is available through a dedicated <a href="https://github.com/progettopulvirus/A_spatiotemporal_analysis_of_NO2_concentrations" title="github model repository" target="_blank">github repository</a>.</p>
+
+<hr>
+
+<h4>People <i class="fas fa-user-cog"></i></h4>
+
+<p>
+
+<div><span style="font-weight: bold;">Guido Fioravanti</span>, Italian National Institute for Environmental Protection and Research, Department for environmental evaluation, control and sustainability</div>
+
+<div><span style="font-weight: bold;">Michela Cameletti</span>, Department of Economics, University of Bergamo, Bergamo, Italy</div>
+
+<div><span style="font-weight: bold;">Sara Martino</span>, Norwegian University of Science and Technology, Trondheim, Norway</div>
+
+<div><span style="font-weight: bold;">Giorgio Cattani</span>, Italian National Institute for Environmental Protection and Research, Department for environmental evaluation, control and sustainability</div> 
+
+<div><span style="font-weight: bold;">Enrico Pisoni</span>, European Commission, Joint Research Centre, Ispra, Italy</div> 
+  
+</p>
+
+<hr>
+
+<h4>Contact us <i class="fas fa-envelope"></i></h4>
+
+<address><a href="mailto:guido.fioravanti@isprambiente.it">guido.fioravanti@isprambiente.it</a></address>
 
 </div>
+</body>
+</html>

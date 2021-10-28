@@ -1,0 +1,94 @@
+<html>
+<head></head>
+<body>
+<div id="readme" style="background-color: #fff; min-width: 250px; max-width: 60%; margin-left: 5%;margin-top: 48px;line-height: 1.8;color: #333;">
+
+<h4>La app <i class="fas fa-cogs"></i></h4>
+
+<p>
+Questa <a href="https://shiny.rstudio.com/">shiny app</a> consente di visualizzare le mappe settimanali che descrivono i pattern spaziali delle variazioni relative 2019/2020 nelle concentrazioni di biossido di azoto (<a href="https://en.wikipedia.org/wiki/Nitrogen_dioxide" title="Nitrogen dioxide" target="_blank">NO2</a>) in Italia per i mesi di Marzo e Aprile, durante il <a href="https://en.wikipedia.org/wiki/Timeline_of_the_COVID-19_pandemic_in_Italy" title="Timeline of the COVID-19 pandemic inItaly" target="_blank">lockdown</a> nazionale messo in atto per fronteggiare la pandemia di <a href="https://en.wikipedia.org/wiki/COVID-19_pandemic" title="COVID-19 pandemic" target="_blank">COVID-19</a>.</p>
+
+<hr>
+
+<h4>Le mappe <i class="fas fa-map-marked"></i></h4>
+
+<p>Le mappe sono il risultato di un modello statistico spazio-temporale che tiene conto dell'effetto del meteo e di altri fattori di confondimento (<em>confounding factors</em>), così come della correlazione spaziale e temporale che caratterizza i dati di input.</p>
+
+<p>Una descrizione approfondita del modello è disponibile preso questo link [Indirizzo Archive].</p>
+
+<hr>
+
+<h4>Le mappe e l'effetto del meteo <i class="fas fa-smog"></i></h4>
+
+<p>Poichè le mappe tengono conto dell'effetto che la meteorologia ha sulla concentrazione degli inquinanti, le variazioni mostrate nel corso delle diverse settimane sul territorio italiano debbono essere attribuite a un fattore differente dal clima. Inoltre, poichè queste riduzioni si manifestano proprio durante i mesi del primo lockdown nazionale e' probabile che le misure di contenimento messe in atto abbiano avuto un effetto sui livelli dell'NO2.</p>
+
+<p>Detto questo, non possiamo tuttavia escludere che altri fattori, non considerati nel modello, possano aver avuto un ruolo attivo nella dinamica dell'NO2.</p>
+</p>
+
+<hr>
+
+<h4>Come funziona la app</h4>
+
+<p>
+<ol>
+  
+<li>Selezionare la lingua dell'interfaccia (italiano o inglese)</li>
+
+<li>Selezionare se visualizzare le mappe per i giorni feriali (Lunedi - Sabato) o festivi (Domenica)</li>
+
+<li>Selezionare nel menù a tendina una delle settimane dei mesi di Marzo-Aprile</li>
+
+<li>Le aree in cui le variazioni risultano statisticamente significative al livello di 0.05 possono essere evidenziate cliccando su "<strong>Area con variazione significativa</strong>"</li>
+
+<li>Cliccare su una delle stazioni di monitoraggio (cerchi rossi nella mappa) per visualizzare nel pannello "<strong>Info stazione</strong>" le corrispettive variazioni percentuali 2019/2020
+
+</ol>
+</p>
+
+<hr>
+
+<h4>I dati <i class="fas fa-map-pin"></i></h4>
+
+<p>I dati orari 2019 e 2020 di NO2 (espressi in &mu;g∕𝑚<sup>3</sup>), assieme ai metadati delle stazioni di monitoraggio, sono stati estratti dal database nazionale dove vengono archiviati e processati le misurazioni italiane di qualità dell'aria (<a href="https://www.snpambiente.it/wp-content/uploads/2020/12/QUALITA-ARIA-ITALIA.pdf" title="Qualita aria in Italia" target="_blank">SNPA 2020</a>).</p>
+
+<p>I dati orari sono stati misurati presso le stazioni gestite dalle diverse ARPA regionali, seguendo gli standard europei EN 14211:2012 per l'NO, l'NO2 , e l'NOX. Tutte le misure di concentrazioni al suolo sono state validate e le medie giornaliere sono state calcolate solo per i giorni con almeno il 75% dei dati disponibili (ovvero con almeno 18 osservazioni orarie valide su 24).</p>
+
+<p>Il dataset di input per il modello spazio-temporale include 546 stazioni di monitoraggio con una bassa percentuale di dati mancanti (&lt; 25% per stazione).</p>
+
+<hr>
+
+
+
+<hr>
+
+<h4>Il codice <i class="fas fa-code"></i></h4>
+
+<p>Parte del codice sorgente del modello spazio temporale è disponibile presso un apposito repository <a href="https://github.com/progettopulvirus/A_spatiotemporal_analysis_of_NO2_concentrations" title="github model repository" target="_blank">github</a>.</p>
+
+<hr>
+
+<h4>Chi siamo <i class="fas fa-user-cog"></i></h4>
+
+<p>
+
+<div><span style="font-weight: bold;">Guido Fioravanti</span>, Istituto Superiore per la Protezione e la Ricerca Ambientale, Dipartimento per la valutazione, i controlli e la sostenibilità ambientale, Roma, Italia</div>
+
+<div><span style="font-weight: bold;">Michela Cameletti</span>, Dipartimento di Economica, Università di Bergamo, Bergamo, Italia</div>
+
+<div><span style="font-weight: bold;">Sara Martino</span>, Norwegian University of Science and Technology, Trondheim, Norvegia</div>
+
+<div><span style="font-weight: bold;">Giorgio Cattani</span>, Istituto Superiore per la Protezione e la Ricerca Ambientale, Dipartimento per la valutazione, i controlli e la sostenibilità ambientale, Roma, Italia</div> 
+
+<div><span style="font-weight: bold;">Enrico Pisoni</span>, European Commission, Joint Research Centre, Ispra, Italia</div> 
+  
+</p>
+
+<hr>
+
+<h4>Contatti <i class="fas fa-envelope"></i></h4>
+
+<address><a href="mailto:guido.fioravanti@isprambiente.it">guido.fioravanti@isprambiente.it</a></address>
+
+</div>
+</body>
+</html>

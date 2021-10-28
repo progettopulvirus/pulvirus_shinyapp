@@ -7,6 +7,7 @@ library("stringr")
 library("htmltools")
 library("htmlwidgets")
 library("vroom")
+library("readr")
 
 
 #I file rasters hanno proiezione 3857 (Google Mercator) che e' la proiezione di leaflet di default in modo di velocizzare la visualizzazione delle mappe
@@ -29,4 +30,5 @@ leaflet(data=stazioni) %>%
   addTiles() %>%
   addProviderTiles(provider="Stamen.Toner")->mappaLeaf
 
-
+read_file("readme.html")->readmeEN
+read_file("leggimi.html")->readmeIT

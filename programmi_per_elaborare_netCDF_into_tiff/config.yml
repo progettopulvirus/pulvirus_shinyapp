@@ -1,0 +1,6 @@
+default:
+  nome_file: "media_{GIORNI}_modelloMETEO1920_mese{MESE}_regionelombardia.nc"
+  output_file: "{GIORNI}.tif"
+maschere:
+  nome_file: "mediaMasked_{GIORNI}_modelloMETEO1920_mese{MESE}_regionelombardia.nc"
+  output_file: "{GIORNI}_masked.tif"
